@@ -1,0 +1,27 @@
+{
+  "version": 2,
+  "configurePresets": [
+    {
+      "name": "Debug",
+      "displayName": "Debug gcc-13",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build",
+      "cacheVariables": {
+        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_C_COMPILER": "gcc-13",
+        "CMAKE_CXX_COMPILER": "g++-13",
+        "CMAKE_C_FLAGS": "-g -O0 -pg -Wall -Wextra",
+        "CMAKE_CXX_FLAGS": "-g -O0 -pg -Wall -Wextra"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "Debug-build",
+      "configurePreset": "Debug",
+      "jobs": 0,
+      "targets": ["all"]
+    }
+  ]
+}
