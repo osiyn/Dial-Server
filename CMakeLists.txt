@@ -4,13 +4,17 @@ project(Dial-Server
     LANGUAGES CXX
 )
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 find_package(spdlog CONFIG REQUIRED)
+find_package(Boost REQUIRED COMPONENTS system)
 
-add_executable(${CMAKE_PROJECT_NAME} src/server/main.cpp)
+add_executable(${CMAKE_PROJECT_NAME} src/server/server.cpp)
+add_executable(${CMAKE_PROJECT_NAME}-tst src/test_client/client.cpp)
 
 target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE spdlog::spdlog_header_only)
+target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE Boost::system)
+target_link_libraries(${CMAKE_PROJECT_NAME}-tst PRIVATE Boost::system)
